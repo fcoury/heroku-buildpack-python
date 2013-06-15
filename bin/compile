@@ -18,6 +18,9 @@ ROOT_DIR=$(dirname $BIN_DIR)
 BUILD_DIR=$1
 CACHE_DIR=$2
 
+echo BUILD_DIR=$BUILD_DIR
+echo CACHE_DIR=$CACHE_DIR
+
 CACHED_DIRS=".heroku"
 
 # Static configurations for virtualenv caches.
@@ -46,9 +49,11 @@ TMP_APP_DIR=$CACHE_DIR/tmp_app_dir
 
 # Copy Anvil app dir to temporary storage...
 mkdir -p $TMP_APP_DIR
+echo Calling deep-vm with APP_DIR=$APP_DIR TMP_APP_DIR=$TMP_ADD_DIR
 deep-mv $APP_DIR $TMP_APP_DIR
 
 # Copy Application code in.
+echo Calling deep-vm with BUILD_DIR=$BUILD_DIR APP_DIR=$APP_DIR
 deep-mv $BUILD_DIR $APP_DIR
 
 # Set new context.
