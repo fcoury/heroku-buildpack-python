@@ -47,7 +47,9 @@ function deep-cp (){
   shopt | grep extglob
   echo "cp -fr $1/... $2"
   cp -r $1/!(tmp) $2
+  echo "list of $1:"
   ls -la $1
+  echo "end of list $1"
   # echo copying $1 to $2
 }
 
