@@ -45,6 +45,7 @@ function deep-cp (){
   shopt | grep extglob
   shopt -s extglob
   shopt | grep extglob
+  echo "cp -fr $1/... $2"
   cp -r $1/!(tmp) $2
   # echo copying $1 to $2
 }
@@ -57,6 +58,7 @@ function deep-mv (){
   shopt | grep extglob
   shopt -s extglob
   shopt | grep extglob
+  echo "rm -fr $1/..."
   rm -fr $1/!(tmp)
   find -H $1 -maxdepth 1 -name '.*' -a \( -type d -o -type f -o -type l \) -exec rm -fr '{}' \;
 }
