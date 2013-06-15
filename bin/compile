@@ -7,6 +7,7 @@
 
 # Fail fast and fail hard.
 set -eo pipefail
+shopt -s extglob
 
 # Prepend proper path for virtualenv hackery. This will be deprecated soon.
 export PATH=:/usr/local/bin:$PATH
