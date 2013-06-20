@@ -40,9 +40,8 @@ function un-set-env (){
 
 # Does some serious copying.
 function deep-cp (){
-  echo "   ----> running find in $1"
-  find -H $1 -maxdepth 1 -name '.*' -a \( -type d -o -type f -o -type l \) -exec cp -a '{}' $2 \;
   echo "   ----> running cp from $1 to $2"
+
   echo "   ----> BEFORE COPY"
   echo ""
   echo "   ----> files in $1"
@@ -52,7 +51,22 @@ function deep-cp (){
   ls -la $2
   echo ""
   echo "   ----> copying..."
+
+  echo "   ----> copying .* from $1 to $2..."
+  find -H $1 -maxdepth 1 -name '.*' -a \( -type d -o -type f -o -type l \) -exec cp -a '{}' $2 \;
+
+  echo "   ----> copying everything else from $1 to $2..."
   cp -r $1/!(tmp) $2
+
+  echo "   ----> AFTER COPY"
+  echo ""
+  echo "   ----> files in $1"
+  ls -la $1
+  echo ""
+  echo "   ----> files in $2"
+  ls -la $2
+  echo ""
+  echo "   ----> copying..."
 }
 
 # Does some serious moving.
