@@ -40,14 +40,15 @@ function un-set-env (){
 
 # Does some serious copying.
 function deep-cp (){
-  ls -la /app
-  echo 1st is $1
+  echo "   ----> running find in $1"
   find -H $1 -maxdepth 1 -name '.*' -a \( -type d -o -type f -o -type l \) -exec cp -a '{}' $2 \;
-  echo "inside deep-cp"
-  shopt | grep extglob
-  shopt -s extglob
-  shopt | grep extglob
-  echo "cp -fr $1/... $2"
+  echo "   ----> running cp from $1 to $2"
+  echo "   ----> BEFORE COPY"
+  echo "   ----> files in $1"
+  ls -la $1
+  echo "   ----> files in $1"
+  ls -la $1
+
   cp -r $1/!(tmp) $2
   echo "list of $1:"
   ls -la $1
