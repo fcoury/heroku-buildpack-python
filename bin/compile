@@ -50,13 +50,21 @@ TMP_APP_DIR=$CACHE_DIR/tmp_app_dir
 echo APP_DIR=$APP_DIR TMP_APP_DIR=$TMP_APP_DIR
 
 # Copy Anvil app dir to temporary storage...
+echo ""
+echo -------------------------------------------------------------
 mkdir -p $TMP_APP_DIR
 echo Calling deep-vm with APP_DIR=$APP_DIR TMP_APP_DIR=$TMP_ADD_DIR
 deep-mv $APP_DIR $TMP_APP_DIR
+echo -------------------------------------------------------------
+echo ""
 
 # Copy Application code in.
+echo ""
+echo -------------------------------------------------------------
 echo Calling deep-vm with BUILD_DIR=$BUILD_DIR APP_DIR=$APP_DIR
 deep-mv $BUILD_DIR $APP_DIR
+echo -------------------------------------------------------------
+echo ""
 
 # Set new context.
 ORIG_BUILD_DIR=$BUILD_DIR
