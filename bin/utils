@@ -44,27 +44,23 @@ function deep-cp (){
   find -H $1 -maxdepth 1 -name '.*' -a \( -type d -o -type f -o -type l \) -exec cp -a '{}' $2 \;
   echo "   ----> running cp from $1 to $2"
   echo "   ----> BEFORE COPY"
+  echo ""
   echo "   ----> files in $1"
   ls -la $1
-  echo "   ----> files in $1"
-  ls -la $1
-
+  echo ""
+  echo "   ----> files in $2"
+  ls -la $2
+  echo ""
+  echo "   ----> copying..."
   cp -r $1/!(tmp) $2
-  echo "list of $1:"
-  ls -la $1
-  echo "end of list $1"
-  # echo copying $1 to $2
 }
 
 # Does some serious moving.
 function deep-mv (){
   deep-cp $1 $2
 
-  echo "inside deep-mv"
-  shopt | grep extglob
-  shopt -s extglob
-  shopt | grep extglob
-  echo "rm -fr $1/..."
+  echo "   ----> running rm on $1"
   rm -fr $1/!(tmp)
+  echo "   ----> find with $1"
   find -H $1 -maxdepth 1 -name '.*' -a \( -type d -o -type f -o -type l \) -exec rm -fr '{}' \;
 }
